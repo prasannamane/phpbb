@@ -1,0 +1,48 @@
+<!-- INCLUDE mcp_header.html -->
+
+<form method="post" id="mcp" action="{U_POST_ACTION}">
+
+<h2>{L_WARN_USER}</h2>
+
+	<h3>{USERNAME_FULL}</h3>
+
+	<div class="d-flex">
+		<!-- IF AVATAR_IMG --><div>{AVATAR_IMG}</div><!-- ENDIF -->
+		<div class="d-flex flex-column">
+			<!-- IF RANK_TITLE -->
+			<div class="d-flex"><div class="fw-bold me-2">{L_RANK}{L_COLON}</div>{RANK_TITLE}</div>
+			<!-- ENDIF -->
+			<!-- IF RANK_IMG -->
+			<div class="d-flex"><div class="fw-bold me-2"><!-- IF RANK_TITLE -->&nbsp;<!-- ELSE -->{L_RANK}{L_COLON}<!-- ENDIF --></div>{RANK_IMG}</div>
+			<!-- ENDIF -->
+			<div class="d-flex"><div class="fw-bold me-2">{L_JOINED}{L_COLON}</div>{JOINED}</div>
+			<div class="d-flex"><div class="fw-bold me-2">{L_TOTAL_POSTS}{L_COLON}</div>{POSTS}</div>
+			<div class="d-flex"><div class="fw-bold me-2">{L_WARNINGS}{L_COLON} </div>{WARNINGS}</div>
+		</div>
+	</div>
+
+<!-- EVENT mcp_warn_user_add_warning_field_before -->
+	<div class="d-flex flex-column mt-3">
+		<h3>{L_ADD_WARNING}</h3>
+		<p>{L_ADD_WARNING_EXPLAIN}</p>
+		<fieldset>
+			<textarea name="warning" id="warning" class="form-control" cols="40" rows="3">{L_WARNING_POST_DEFAULT}</textarea>
+			<!-- IF S_CAN_NOTIFY -->
+			<div class="form-check mt-2">
+				<input class="form-check-input" type="checkbox" name="notify_user" checked="checked" id="notify_user">
+				<label class="form-check-label" for="notify_user">
+					{L_NOTIFY_USER_WARN}
+				</label>
+			</div>
+			<!-- ENDIF -->
+		</fieldset>
+	</div>
+<!-- EVENT mcp_warn_user_add_warning_field_after -->
+
+<fieldset class="submit-buttons">
+	<input type="submit" name="action[add_warning]" value="{L_SUBMIT}" class="btn btn-outset" />
+	{S_FORM_TOKEN}
+</fieldset>
+</form>
+
+<!-- INCLUDE mcp_footer.html -->

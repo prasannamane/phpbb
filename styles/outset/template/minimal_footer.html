@@ -1,0 +1,67 @@
+<!--    This template is used for pages that divert from the regular forum template,
+        such as the the login-page (login_body.html). Remember to manually add the phpBB copyright
+        to any page using this template. -->
+
+<!-- EVENT overall_footer_content_after -->
+<!-- EVENT overall_footer_page_body_after -->
+<div>
+    <a id="bottom" class="anchor" accesskey="z"></a>
+    <!-- IF not S_IS_BOT -->{RUN_CRON_TASK}<!-- ENDIF -->
+</div>
+
+<script src="{T_JQUERY_LINK}"></script>
+<!-- IF S_ALLOW_CDN --><script>window.jQuery || document.write('\x3Cscript src="{T_ASSETS_PATH}/javascript/jquery-3.6.0.min.js?assets_version={T_ASSETS_VERSION}">\x3C/script>');</script><!-- ENDIF -->
+<script src="{T_ASSETS_PATH}/javascript/core.js?assets_version={T_ASSETS_VERSION}"></script>
+<!-- INCLUDEJS forum_fn.js -->
+<!-- INCLUDEJS ajax.js -->
+<!-- INCLUDEJS bootstrap.min.js -->
+<!-- IF S_ALLOW_CDN -->
+<script>
+    (function($){
+        var $fa_cdn = $('head').find('link[rel="stylesheet"]').first(),
+            $span = $('<span class="fa" style="display:none"></span>').appendTo('body');
+        if ($span.css('fontFamily') !== 'FontAwesome' ) {
+            $fa_cdn.after('<link href="{T_ASSETS_PATH}/css/font-awesome.min.css" rel="stylesheet">');
+            $fa_cdn.remove();
+        }
+        $span.remove();
+    })(jQuery);
+</script>
+<!-- ENDIF -->
+
+<!-- IF S_COOKIE_NOTICE -->
+<script src="{T_ASSETS_PATH}/cookieconsent/cookieconsent.min.js?assets_version={T_ASSETS_VERSION}"></script>
+<script>
+    if (typeof window.cookieconsent === "object") {
+        window.addEventListener("load", function(){
+            window.cookieconsent.initialise({
+                "palette": {
+                    "popup": {
+                        "background": "#0F538A"
+                    },
+                    "button": {
+                        "background": "#E5E5E5"
+                    }
+                },
+                "theme": "classic",
+                "content": {
+                    "message": "{LA_COOKIE_CONSENT_MSG}",
+                    "dismiss": "{LA_COOKIE_CONSENT_OK}",
+                    "link": "{LA_COOKIE_CONSENT_INFO}",
+                    "href": "{UA_PRIVACY}"
+                }
+            });
+        });
+    }
+</script>
+<!-- ENDIF -->
+
+<!-- EVENT overall_footer_after -->
+
+<!-- IF S_PLUPLOAD --><!-- INCLUDE plupload.html --><!-- ENDIF -->
+{$SCRIPTS}
+
+<!-- EVENT overall_footer_body_after -->
+
+</body>
+</html>

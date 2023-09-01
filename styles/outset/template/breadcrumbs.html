@@ -1,0 +1,45 @@
+<div class="row d-flex mb-3">
+    <div class="col">
+        <nav aria-label="breadcrumb" class="breadcrumb-bar d-flex justify-content-between">
+            {% set MICRODATA = 'itemtype="https://schema.org/ListItem" itemprop="itemListElement" itemscope' %}
+            {% set navlink_position = 1 %}
+
+            {% EVENT overall_header_breadcrumbs_before %}
+            <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList" >
+                {% if U_SITE_HOME %}
+                <li class="breadcrumb-item active" {{ MICRODATA }}><a href="{{ U_SITE_HOME }}" data-navbar-reference="home">{{ L_SITE_HOME }}</a><meta itemprop="position" content="{{ navlink_position }}{% set navlink_position = navlink_position + 1 %}" /></li>
+                {% endif %}
+                {% EVENT overall_header_breadcrumb_prepend %}
+                <li class="breadcrumb-item" {{ MICRODATA }}><a href="{{ U_INDEX }}" accesskey="h" data-navbar-reference="index">{% if not U_SITE_HOME %}{% endif %}{{ L_INDEX }}</a><meta itemprop="position" content="{{ navlink_position }}{% set navlink_position = navlink_position + 1 %}" /></li>
+                {% for navlink in navlinks %}
+                {% set NAVLINK_NAME = navlink.BREADCRUMB_NAME | default(navlink.FORUM_NAME) %}
+                {% set NAVLINK_LINK = navlink.U_BREADCRUMB | default(navlink.U_VIEW_FORUM) %}
+                {% EVENT overall_header_navlink_prepend %}
+                <li class="breadcrumb-item" {{ MICRODATA }}{% if navlink.MICRODATA %} {{ navlink.MICRODATA }}{% endif %}><a itemprop="item" href="{{ NAVLINK_LINK }}">{{ NAVLINK_NAME }}</a><meta itemprop="position" content="{{ navlink_position }}{% set navlink_position = navlink_position + 1 %}" /></li>
+                {% EVENT overall_header_navlink_append %}
+                {% endfor %}
+
+                {% EVENT overall_header_breadcrumb_append %}
+            </ol>
+            {% EVENT overall_header_breadcrumbs_after %}
+            {% if S_DISPLAY_SEARCH and not S_IN_SEARCH %}
+            <a href="{{ U_SEARCH }}" title="{{ lang('SEARCH_ADV_EXPLAIN') }}" role="menuitem" class="d-flex flex-column justify-content-center d-inline d-md-none">
+                <i class="icon fa-search fa-fw" aria-hidden="true"></i><span class="sr-only">{{ lang('SEARCH') }}</span>
+            </a>
+            {% endif %}
+        </nav>
+    </div>
+    <!-- EVENT overall_header_searchbox_before -->
+    <!-- IF S_DISPLAY_SEARCH and not S_IN_SEARCH -->
+    <div class="col-3 col-lg-2 d-none d-md-flex">
+        <form action="{U_SEARCH}" method="get" id="search" class="d-flex search-bar w-100">
+            <div class="input-group">
+                <span class="input-group-text" id="basic-addon1"><i class="icon fa-search fa-fw" aria-hidden="true"></i></span>
+                <input class="form-control p-0" name="keywords" id="keywords" type="search" maxlength="128" title="{L_SEARCH_KEYWORDS}" size="20" value="{SEARCH_WORDS}" placeholder="{L_SEARCH_MINI}">
+                {S_SEARCH_HIDDEN_FIELDS}
+            </div>
+        </form>
+    </div>
+    <!-- ENDIF -->
+    <!-- EVENT overall_header_searchbox_after -->
+</div>

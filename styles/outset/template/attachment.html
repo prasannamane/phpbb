@@ -1,0 +1,41 @@
+<!-- EVENT attachment_file_before -->
+
+<!-- BEGIN _file -->
+	<!-- IF _file.S_DENIED -->
+	<p>[{_file.DENIED_MESSAGE}]</p>
+	<!-- ELSE -->
+		<!-- EVENT attachment_file_prepend -->
+
+		<!-- IF _file.S_THUMBNAIL -->
+		<dl class="thumbnail">
+			<dt><a href="{_file.U_DOWNLOAD_LINK}"><img src="{_file.THUMB_IMAGE}" class="postimage" alt="{% if _file.COMMENT %}{{ _file.COMMENT|e('html') }}{% else %}{{ _file.DOWNLOAD_NAME }}{% endif %}" title="{_file.DOWNLOAD_NAME} ({_file.FILESIZE} {_file.SIZE_LANG}) {_file.L_DOWNLOAD_COUNT}" /></a></dt>
+			<!-- IF _file.COMMENT --><dd> {_file.COMMENT}</dd><!-- ENDIF -->
+		</dl>
+		<!-- ENDIF -->
+
+		<!-- IF _file.S_IMAGE -->
+		<dl class="file d-flex">
+			<dt class="attach-image align-items-center"><img src="{_file.U_INLINE_LINK}" class="postimage" alt="{% if _file.COMMENT %}{{ _file.COMMENT|e('html') }}{% else %}{{ _file.DOWNLOAD_NAME }}{% endif %}" onclick="viewableArea(this);" /></dt>
+			<dd class="d-flex flex-column justify-content-center ms-2">
+				<div><span class="text-strong">{_file.DOWNLOAD_NAME}</span> ({_file.FILESIZE} {_file.SIZE_LANG})</div>
+				<!-- IF _file.COMMENT --><em>{_file.COMMENT}</em><!-- ENDIF -->
+				{_file.L_DOWNLOAD_COUNT}
+			</dd>
+		</dl>
+		<!-- ENDIF -->
+
+		<!-- IF _file.S_FILE -->
+		<dl class="file d-flex align-items-center">
+			<dt class="file-icon d-flex align-items-center justify-content-center"><i class="icon fa-paperclip fa-fw fs-1" aria-hidden="true"></i></dt>
+			<dd class="d-flex flex-column justify-content-center ms-2">
+				<div><a class="postlink text-strong" href="{_file.U_DOWNLOAD_LINK}">{_file.DOWNLOAD_NAME}</a> ({_file.FILESIZE} {_file.SIZE_LANG})</div>
+				<!-- IF _file.COMMENT --><dd><em>{_file.COMMENT}</em></dd><!-- ENDIF -->
+			{_file.L_DOWNLOAD_COUNT}
+			</dd>
+		</dl>
+		<!-- ENDIF -->
+
+		<!-- EVENT attachment_file_append -->
+	<!-- ENDIF -->
+<!-- END _file -->
+<!-- EVENT attachment_file_after -->

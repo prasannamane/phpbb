@@ -1,0 +1,40 @@
+<!-- INCLUDE overall_header.html -->
+
+<!-- EVENT index_body_markforums_before -->
+<!-- IF U_MARK_FORUMS -->
+	<div class="action-bar compact d-flex justify-content-end">
+		<a href="{U_MARK_FORUMS}" class="btn" accesskey="m" data-ajax="mark_forums_read">{L_MARK_FORUMS_READ}</a>
+	</div>
+<!-- ENDIF -->
+
+<!-- IF NEWEST_USER -->
+<h3>{L_STATISTICS}</h3>
+<div class="d-flex flex-wrap justify-content-between statictics">
+	<!-- EVENT index_body_block_stats_prepend -->
+	<span class="badge bg-lesser text-lesser-darker fw-normal p-3 m-1 flex-grow-1">{TOTAL_POSTS}</span>
+	<span class="badge bg-lesser text-lesser-darker fw-normal p-3 m-1 flex-grow-1">{TOTAL_TOPICS}</span>
+	<span class="badge bg-lesser text-lesser-darker fw-normal p-3 m-1 flex-grow-1">{TOTAL_USERS}</span>
+	<span class="badge bg-lesser text-lesser-darker fw-normal p-3 m-1 flex-grow-1">{NEWEST_USER}</span>
+	<!-- EVENT index_body_block_stats_append -->
+</div>
+<div class="d-flex flex-wrap justify-content-between bfs-sensex">
+	<img id="logoimg" src="styles/outset/theme/images/sensex.png" alt="Bajaj Financial Securities Ltd. Academy" class="">
+</div>
+<div class="d-flex flex-wrap justify-content-between bfs-filter">
+	<!-- EVENT index_body_block_stats_prepend -->
+	<span class="badge bg-lesser text-lesser-darker fw-normal p-3 m-1 flex-grow-1">All Categories ></span>
+	<span class="badge bg-lesser text-lesser-darker fw-normal p-3 m-1 flex-grow-1">All Tags ></span>
+	<span class="badge bg-lesser text-lesser-darker fw-normal p-3 m-1 flex-grow-1">Latest</span>
+	<span class="badge bg-lesser text-lesser-darker fw-normal p-3 m-1 flex-grow-1">Top</span> 
+	<!-- EVENT index_body_block_stats_append -->
+</div>
+<!-- ENDIF -->
+
+<!-- EVENT index_body_markforums_after -->
+
+<!-- INCLUDE forumlist_body.html -->
+
+<!-- EVENT index_body_forumlist_body_after -->
+
+
+<!-- INCLUDE overall_footer.html -->

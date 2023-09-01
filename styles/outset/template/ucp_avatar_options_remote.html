@@ -1,0 +1,21 @@
+<div class="mb-3">
+	<label for="avatar_remote_url" class="form-label">{L_LINK_REMOTE_AVATAR}</label>
+	<input type="url" class="form-control" name="avatar_remote_url" id="avatar_remote_url" value="{AVATAR_REMOTE_URL}" aria-describedby="remote_url_explain" data-reset-on-edit="#avatar_remote_width, #avatar_remote_height">
+	<div id="remote_url_explain" class="form-text">{L_LINK_REMOTE_AVATAR_EXPLAIN}</div>
+</div>
+<div class="mb-3">
+	<label for="avatar_remote_width" class="form-label">{L_LINK_REMOTE_SIZE}</label>
+	<div class="d-flex align-items-center">
+		<div class="input-group">
+			<input type="number" name="avatar_remote_width" id="avatar_remote_width" min="{AVATAR_MIN_WIDTH}" max="{AVATAR_MAX_WIDTH}" value="{AVATAR_REMOTE_WIDTH}" class="form-control" />
+			<span class="input-group-text bg-white border-0">{L_PIXEL}</span>
+		</div>
+		&times;&nbsp;
+		<div class="input-group">
+			<input type="number" name="avatar_remote_height" id="avatar_remote_height" min="{AVATAR_MIN_HEIGHT}" max="{AVATAR_MAX_HEIGHT}" value="{AVATAR_REMOTE_HEIGHT}" class="form-control" />
+			<span class="input-group-text bg-white border-0">{L_PIXEL}</span>
+		</div>
+	</div>
+	<div id="remote_size_explain" class="form-text">{L_LINK_REMOTE_SIZE_EXPLAIN}</div>
+</div>
+

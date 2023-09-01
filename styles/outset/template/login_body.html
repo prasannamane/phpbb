@@ -1,0 +1,107 @@
+<!-- INCLUDE minimal_header.html -->
+<div class="container-fluid">
+	<div class="row min-vh-100">
+		<div class="col-12 col-md d-flex flex-column justify-content-between bg-white p-5">
+			<a href="{% if U_SITE_HOME %}{{ U_SITE_HOME }}{% else %}{{ U_INDEX }}{% endif %}" title="{% if U_SITE_HOME %}{{ L_SITE_HOME }}{% else %}{{ L_INDEX }}{% endif %}"><i class="icon fa-arrow-left fa-fw fs-1 fw-light" aria-hidden="true"></i></a>
+			<form action="{S_LOGIN_ACTION}" method="post" id="login" data-focus="<!-- IF S_ADMIN_AUTH -->{PASSWORD_CREDENTIAL}<!-- ELSE -->{USERNAME_CREDENTIAL}<!-- ENDIF -->">
+				<h2 class="login-title my-4 text-center fw-bold"><!-- IF LOGIN_EXPLAIN -->{LOGIN_EXPLAIN}<!-- ELSE -->{L_LOGIN}<!-- ENDIF --></h2>
+
+				<fieldset <!-- IF not S_CONFIRM_CODE -->class="fields1"<!-- ELSE -->class="fields2"<!-- ENDIF -->>
+				<!-- IF LOGIN_ERROR --><div class="error">{LOGIN_ERROR}</div><!-- ENDIF -->
+				<div class="mb-3">
+					<label for="{USERNAME_CREDENTIAL}" class="form-label">{L_USERNAME}{L_COLON}</label>
+					<input type="text" tabindex="1" name="{USERNAME_CREDENTIAL}" id="{USERNAME_CREDENTIAL}" size="25" value="{USERNAME}" class="form-control" />
+				</div>
+				<div class="mb-3">
+					<label for="{PASSWORD_CREDENTIAL}" class="form-label">{L_PASSWORD}{L_COLON}</label>
+					<input type="password" tabindex="2" id="{PASSWORD_CREDENTIAL}" name="{PASSWORD_CREDENTIAL}" size="25" class="form-control" autocomplete="off" />
+					<!-- IF S_DISPLAY_FULL_LOGIN and (U_SEND_PASSWORD or U_RESEND_ACTIVATION) -->
+					<!-- ENDIF -->
+				</div>
+				<!-- IF CAPTCHA_TEMPLATE and S_CONFIRM_CODE -->
+				<!-- DEFINE $CAPTCHA_TAB_INDEX = 3 -->
+				<!-- INCLUDE {CAPTCHA_TEMPLATE} -->
+				<!-- ENDIF -->
+				<!-- IF S_DISPLAY_FULL_LOGIN -->
+				<!-- IF S_AUTOLOGIN_ENABLED -->
+				<div>
+						<div class="mb-1 form-check">
+							<input type="checkbox" class="form-check-input" id="autologin" name="autologin">
+							<label class="form-check-label" for="autologin">{L_LOG_ME_IN}</label>
+						</div>
+						<!-- ENDIF -->
+						<div class="mb-3 form-check">
+							<input type="checkbox" class="form-check-input" id="viewonline" name="viewonline">
+							<label class="form-check-label" for="viewonline">{L_HIDE_ME}</label>
+						</div>
+						<!-- ENDIF -->
+						<div class="d-grid gap-2">
+							{S_HIDDEN_FIELDS}
+							<input type="submit" class="btn btn-primary" name="login" value="{L_LOGIN}">
+						</div>
+						<div>
+							<!-- IF U_SEND_PASSWORD --><a href="{U_SEND_PASSWORD}" class="align-self-end mt-1">{L_FORGOT_PASS}</a><!-- ENDIF -->
+							<!-- IF U_RESEND_ACTIVATION --><a href="{U_RESEND_ACTIVATION}" class="align-self-end mt-1">{L_RESEND_ACTIVATION}</a><!-- ENDIF -->
+						</div>
+					{S_LOGIN_REDIRECT}
+					{S_FORM_TOKEN_LOGIN}
+
+				</div>
+
+				</fieldset>
+			</form>
+
+			<!-- IF not S_ADMIN_AUTH and PROVIDER_TEMPLATE_FILE -->
+			<!-- INCLUDE {PROVIDER_TEMPLATE_FILE} -->
+			<!-- ENDIF -->
+			<div class="copyright">
+				<!-- EVENT overall_footer_copyright_prepend -->
+				<p class="footer-row">
+					<span class="footer-copyright">{{ CREDIT_LINE }}</span>
+				</p>
+				<!-- IF TRANSLATION_INFO -->
+				<p class="footer-row">
+					<span class="footer-copyright">{{ TRANSLATION_INFO }}</span>
+				</p>
+				<!-- ENDIF -->
+				<!-- EVENT overall_footer_copyright_append -->
+				<p class="footer-row" role="menu">
+					<a class="footer-link" href="{{ U_PRIVACY }}" title="{{ lang('PRIVACY_LINK') }}" role="menuitem">
+						<span class="footer-link-text">{{ lang('PRIVACY_LINK') }}</span>
+					</a>
+					|
+					<a class="footer-link" href="{{ U_TERMS_USE }}" title="{{ lang('TERMS_LINK') }}" role="menuitem">
+						<span class="footer-link-text">{{ lang('TERMS_LINK') }}</span>
+					</a>
+				</p>
+				<!-- IF DEBUG_OUTPUT -->
+				<p class="footer-row">
+					<span class="footer-info">{{ DEBUG_OUTPUT }}</span>
+				</p>
+				<!-- ENDIF -->
+				<!-- IF U_ACP -->
+				<p class="footer-row">
+					<a class="footer-link text-strong" href="{{ U_ACP }}">{{ lang('ACP') }}</a>
+				</p>
+				<!-- ENDIF -->
+			</div>
+		</div>
+
+		<!-- IF not S_ADMIN_AUTH and S_REGISTER_ENABLED -->
+		<div class="col-12 col-md d-flex flex-column justify-content-center bg-main p-5">
+			<h2 class="login-title my-4 text-center fw-bold text-white opacity-75">{L_REGISTER}</h2>
+			<div class="d-flex flex-column">
+				<p class="text-white fw-normal opacity-75">{L_LOGIN_INFO}</p>
+				<div class="d-flex my-3 w-100">
+					<a href="{U_TERMS_USE}" class="badge bg-white text-black me-1">{L_TERMS_USE}</a>
+					<a href="{U_PRIVACY}" class="badge bg-white text-black ms-1">{L_PRIVACY}</a></strong>
+				</div>
+				<div class="d-grid gap-2">
+					<a href="{U_REGISTER}" class="btn btn-secondary">{L_REGISTER}</a>
+				</div>
+			</div>
+		</div>
+		<!-- ENDIF -->
+	</div>
+</div>
+<!-- INCLUDE minimal_footer.html -->

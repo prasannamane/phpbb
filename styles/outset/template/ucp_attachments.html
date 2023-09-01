@@ -1,0 +1,86 @@
+<!-- INCLUDE ucp_header.html -->
+
+<form id="ucp" method="post" action="{S_UCP_ACTION}"{S_FORM_ENCTYPE}>
+
+<h2>{L_TITLE}</h2>
+
+	<p>{L_ATTACHMENTS_EXPLAIN}</p>
+
+	<!-- IF .attachrow -->
+		<div class="action-bar top">
+			<div class="pagination">
+				<li class="nav-item">
+					<p class="mb-0">{NUM_ATTACHMENTS}</p>
+					<!-- IF .pagination -->
+					<!-- INCLUDE pagination.html -->
+					<!-- ELSE -->
+					<p>{PAGE_NUMBER}</p>
+					<!-- ENDIF -->
+				</li>
+			</div>
+		</div>
+	<div class="table-responsive">
+		<table class="table bg-white align-middle rounded-3">
+			<thead>
+			<tr>
+				<th scope="col"><a href="{U_SORT_FILENAME}" class="text-black">{L_FILENAME}</a></th>
+				<th scope="col"><a href="{U_SORT_DOWNLOADS}" class="text-black">{L_DOWNLOADS}</a></th>
+				<th scope="col"><a href="{U_SORT_POST_TIME}" class="text-black">{L_POST_TIME}</a></th>
+				<th scope="col">{L_MARK}</th>
+			</tr>
+			</thead>
+			<tbody>
+			<!-- BEGIN attachrow -->
+			<tr>
+				<th scope="row">
+					<a href="{attachrow.U_VIEW_ATTACHMENT}" class="topictitle attachment-filename ellipsis-text" title="{attachrow.FILENAME}">{attachrow.FILENAME}</a>
+					<span class="small">
+					<p class="m-0">{attachrow.SIZE}</p>
+						<!-- IF attachrow.S_IN_MESSAGE -->{L_PM}{L_COLON} <!-- ELSE -->{L_TOPIC}{L_COLON} <!-- ENDIF --><a href="{attachrow.U_VIEW_TOPIC}">{attachrow.TOPIC_TITLE}</a>
+				</span>
+				</th>
+				<td>{attachrow.DOWNLOAD_COUNT}</td>
+				<td>{attachrow.POST_TIME}</td>
+				<td>
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" name="attachment[{attachrow.ATTACH_ID}]" value="1"{% if attachrow.S_LOCKED %} disabled title="{{ lang('ATTACHMENT_LOCKED') }}"{% endif %} />
+					</div>
+				</td>
+			</tr>
+			<!-- END attachrow -->
+			</tbody>
+		</table>
+	</div>
+		<div class="action-bar bottom">
+			<div class="d-flex justify-content-between align-items-center">
+				<ul class="navbar p-0">
+					<!-- INCLUDE display_options.html -->
+					{S_FORM_TOKEN}
+				</ul>
+				<div class="pagination">
+					<li class="nav-item">
+						<p class="mb-0">{TOTAL_ATTACHMENTS} {L_TITLE}</p>
+						<!-- IF .pagination -->
+						<!-- INCLUDE pagination.html -->
+						<!-- ELSE -->
+						<p class="mb-0">{PAGE_NUMBER}</p>
+						<!-- ENDIF -->
+					</li>
+				</div>
+			</div>
+		</div>
+
+	<!-- ELSE -->
+		<p><strong>{L_UCP_NO_ATTACHMENTS}</strong></p>
+	<!-- ENDIF -->
+
+<!-- IF S_ATTACHMENT_ROWS -->
+	<fieldset class="d-flex flex-column align-items-end mt-3">
+		<input class="btn btn-outset" type="submit" name="delete" value="{L_DELETE_MARKED}" form="ucp" />
+		<div><a href="#" onclick="marklist('ucp', 'attachment', true); return false;">{L_MARK_ALL}</a> &bull; <a href="#" onclick="marklist('ucp', 'attachment', false); return false;">{L_UNMARK_ALL}</a></div>
+	</fieldset>
+	{S_FORM_TOKEN}
+<!-- ENDIF -->
+</form>
+
+<!-- INCLUDE ucp_footer.html -->

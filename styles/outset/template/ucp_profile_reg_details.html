@@ -1,0 +1,61 @@
+<!-- INCLUDE ucp_header.html -->
+
+<form id="ucp" method="post" action="{S_UCP_ACTION}"{S_FORM_ENCTYPE}>
+
+<h2>{L_TITLE}</h2>
+
+	<!-- IF S_FORCE_PASSWORD -->
+		<p class="error">{L_FORCE_PASSWORD_EXPLAIN}</p>
+	<!-- ENDIF -->
+
+	<fieldset>
+	<!-- IF ERROR --><p class="error">{ERROR}</p><!-- ENDIF -->
+	<!-- EVENT ucp_profile_register_details_before -->
+		<div class="mb-3">
+			<label <!-- IF S_CHANGE_USERNAME -->for="username"<!-- ENDIF --> class="form-label">{L_USERNAME}</label>
+			<!-- IF S_CHANGE_USERNAME -->
+			<input type="text" class="form-control" name="username" id="username" value="{USERNAME}" title="{L_USERNAME}">
+			<!-- ELSE -->
+			<br><strong>{USERNAME}</strong>
+			<!-- ENDIF -->
+			<div id="usernameExplain" class="form-text">{L_USERNAME_EXPLAIN}</div>
+		</div>
+		<div class="mb-3">
+			<label for="email" class="form-label">{L_EMAIL_ADDRESS}</label>
+			<!-- IF S_CHANGE_EMAIL -->
+			<input type="email" class="form-control" name="email" id="email" maxlength="100" value="{EMAIL}" title="{L_EMAIL_ADDRESS}" autocomplete="off">
+			<!-- ELSE -->
+			<br><strong>{EMAIL}</strong>
+			<!-- ENDIF -->
+		</div>
+	<!-- IF S_CHANGE_PASSWORD -->
+		<div class="mb-3">
+			<label for="new_password" class="form-label">{L_NEW_PASSWORD}</label>
+			<input type="password" class="form-control" name="new_password" id="new_password" maxlength="255" value="{NEW_PASSWORD}" title="{L_CHANGE_PASSWORD}" autocomplete="off" aria-describedby="passwordExplain">
+			<div id="passwordExplain" class="form-text">{L_CHANGE_PASSWORD_EXPLAIN}</div>
+		</div>
+		<div class="mb-3">
+			<label for="new_password" class="form-label">{L_CONFIRM_PASSWORD}</label>
+			<input type="password" class="form-control" name="password_confirm" id="password_confirm" maxlength="255" value="{PASSWORD_CONFIRM}" title="{L_PASSWORD_CONFIRM}" autocomplete="off" aria-describedby="confirmPasswordExplain">
+			<div id="confirmPasswordExplain" class="form-text">{L_CONFIRM_PASSWORD_EXPLAIN}</div>
+		</div>
+	<!-- ENDIF -->
+	<!-- EVENT ucp_profile_register_details_after -->
+	</fieldset>
+
+	<fieldset>
+		<div class="mb-3">
+			<label for="cur_password" class="form-label">{L_CURRENT_PASSWORD}</label>
+			<input type="password" class="form-control" name="cur_password" id="cur_password" maxlength="255" value="{CUR_PASSWORD}" title="{L_CURRENT_PASSWORD}" autocomplete="off" aria-describedby="currentPasswordExplain">
+			<div id="currentPasswordExplain" class="form-text">{L_CURRENT_CHANGE_PASSWORD_EXPLAIN}</div>
+		</div>
+	</fieldset>
+
+<fieldset class="submit-buttons">
+	{S_HIDDEN_FIELDS}
+	<input type="submit" name="submit" value="{L_SUBMIT}" class="btn btn-outset" />
+	{S_FORM_TOKEN}
+</fieldset>
+</form>
+
+<!-- INCLUDE ucp_footer.html -->

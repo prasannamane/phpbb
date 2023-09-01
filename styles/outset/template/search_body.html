@@ -1,0 +1,183 @@
+<!-- INCLUDE overall_header.html -->
+
+<h2 class="solo">{L_SEARCH}</h2>
+
+<!-- EVENT search_body_form_before -->
+<form method="get" action="{S_SEARCH_ACTION}" data-focus="keywords">
+
+<div class="panel bg3">
+	<div class="inner">
+	<h2>{L_SEARCH_QUERY}</h2>
+
+	<!-- EVENT search_body_search_query_before -->
+	<fieldset>
+	<!-- EVENT search_body_search_query_prepend -->
+		<div class="mb-3">
+			<label for="keywords" class="form-label">{L_SEARCH_KEYWORDS}</label>
+			<input type="search" class="form-control" name="keywords" id="keywords" size="40" title="{L_SEARCH_KEYWORDS}" aria-describedby="keywords-explain">
+			<div id="keywords-explain" class="form-text small">{L_SEARCH_KEYWORDS_EXPLAIN}</div>
+			<div class="form-check mt-2">
+				<input class="form-check-input" type="radio" name="terms" id="terms1" value="all" checked>
+				<label class="form-check-label" for="terms1" name="terms" id="terms1" value="any">
+					{L_SEARCH_ALL_TERMS}
+				</label>
+			</div>
+			<div class="form-check">
+				<input class="form-check-input" type="radio" name="terms" id="terms2">
+				<label class="form-check-label" for="terms2">
+					{L_SEARCH_ANY_TERMS}
+				</label>
+			</div>
+		</div>
+
+		<div>
+			<label for="author" class="form-label">{L_SEARCH_AUTHOR}</label>
+			<input type="search" class="form-control" name="author" id="author" size="40" title="{L_SEARCH_AUTHOR}">
+			<div id="author-explain" class="form-text small">{L_SEARCH_AUTHOR_EXPLAIN}</div>
+		</div>
+	<!-- EVENT search_body_search_query_append -->
+	</fieldset>
+	<!-- EVENT search_body_search_query_after -->
+
+	<h3 class="mt-5">{L_SEARCH_OPTIONS}</h3>
+
+	<!-- EVENT search_body_search_options_before -->
+	<fieldset>
+	<!-- EVENT search_body_search_options_prepend -->
+
+		<div class="mb-3">
+			<label for="search_forum" class="form-label">{L_SEARCH_FORUMS}</label>
+			<select name="fid[]" id="search_forum" multiple="multiple" size="8" title="{L_SEARCH_FORUMS}" class="form-control">{S_FORUM_OPTIONS}</select>
+			<div id="search-forum-explain" class="form-text small">{L_SEARCH_FORUMS_EXPLAIN}</div>
+		</div>
+		<dl class="mb-3">
+			<dt><label for="search_child1" class="form-label">{L_SEARCH_SUBFORUMS}</label></dt>
+			<dd>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" name="sc" id="search_child1" value="1" checked>
+					<label class="form-check-label" for="search_child1">{L_YES}</label>
+				</div>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" name="sc" id="search_child2" value="0">
+					<label class="form-check-label" for="search_child2">{L_NO}</label>
+				</div>
+			</dd>
+		</dl>
+		<dl>
+			<dt><label for="sf1" class="form-label">{L_SEARCH_WITHIN}</label></dt>
+			<dd>
+				<div class="form-check">
+					<input class="form-check-input" type="radio" name="sf" id="sf1" value="all" checked>
+					<label class="form-check-label" for="sf1">
+						{L_SEARCH_TITLE_MSG}
+					</label>
+				</div>
+				<div class="form-check">
+					<input class="form-check-input" type="radio" name="sf" id="sf2" value="msgonly">
+					<label class="form-check-label" for="sf2">
+						{L_SEARCH_MSG_ONLY}
+					</label>
+				</div>
+				<div class="form-check">
+					<input class="form-check-input" type="radio" name="sf" id="sf3" value="titleonly">
+					<label class="form-check-label" for="sf3">
+						{L_SEARCH_TITLE_ONLY}
+					</label>
+				</div>
+				<div class="form-check">
+					<input class="form-check-input" type="radio" name="sf" id="sf4" value="firstpost">
+					<label class="form-check-label" for="sf4">
+						{L_SEARCH_FIRST_POST}
+					</label>
+				</div>
+			</dd>
+		</dl>
+	<!-- EVENT search_body_search_options_append -->
+
+	<hr class="dashed" />
+
+	<!-- EVENT search_body_search_display_options_prepend -->
+	<dl>
+		<dt><label for="show_results1" class="form-label">{L_DISPLAY_RESULTS}</label></dt>
+		<dd>
+			<div class="form-check form-check-inline">
+				<input class="form-check-input" type="radio" name="sr" id="show_results1" value="posts" checked>
+				<label class="form-check-label" for="show_results1">{L_POSTS}</label>
+			</div>
+			<div class="form-check form-check-inline">
+				<input class="form-check-input" type="radio" name="sr" id="show_results2" value="topics">
+				<label class="form-check-label" for="show_results2">{L_TOPICS}</label>
+			</div>
+		</dd>
+	</dl>
+	<dl>
+		<dt><label for="sd" class="form-label">{L_RESULT_SORT}</label></dt>
+		<dd>{S_SELECT_SORT_KEY}&nbsp;
+			<div class="form-check form-check-inline">
+				<input class="form-check-input" type="radio" name="sd" id="sa" value="a">
+				<label class="form-check-label" for="sa">{L_SORT_ASCENDING}</label>
+			</div>
+			<div class="form-check form-check-inline">
+				<input class="form-check-input" type="radio" name="sd" id="sd" value="d" checked>
+				<label class="form-check-label" for="sd">{L_SORT_DESCENDING}</label>
+			</div>
+		</dd>
+	</dl>
+	<dl>
+		<dt><label>{L_RESULT_DAYS}{L_COLON}</label></dt>
+		<dd>{S_SELECT_SORT_DAYS}</dd>
+	</dl>
+	<dl>
+		<dt>
+			<label for="ch" class="form-label m-0">{{ lang('RETURN_FIRST') ~ lang('COLON') }}</label>
+			<div class="form-text small">{{ lang('RETURN_FIRST_EXPLAIN') }}</div>
+		</dt>
+		<dd><input id="ch" class="form-control w-auto d-inline" name="ch" type="number" value="{{ DEFAULT_RETURN_CHARS }}" min="0" max="9999" title="{{ lang('RETURN_FIRST') }}"> {{ lang('POST_CHARACTERS') }}</dd>
+	</dl>
+	<!-- EVENT search_body_search_display_options_append -->
+	</fieldset>
+	<!-- EVENT search_body_search_options_after -->
+
+		<fieldset class="submit-buttons">
+			{S_HIDDEN_FIELDS}
+			<input type="submit" name="submit" value="{L_SEARCH}" class="btn btn-outset" />
+		</fieldset>
+
+	</div>
+</div>
+
+
+</form>
+<!-- EVENT search_body_form_after -->
+
+<!-- EVENT search_body_recent_search_before -->
+<!-- IF .recentsearch -->
+<div class="forumbg forumbg-table">
+	<div class="inner">
+
+	<table class="table1">
+	<thead>
+	<tr>
+		<th colspan="2" class="name">{L_RECENT_SEARCHES}</th>
+	</tr>
+	</thead>
+	<tbody>
+	<!-- BEGIN recentsearch -->
+		<tr class="<!-- IF recentsearch.S_ROW_COUNT is even -->bg1<!-- ELSE -->bg2<!-- ENDIF -->">
+			<td><a href="{recentsearch.U_KEYWORDS}">{recentsearch.KEYWORDS}</a></td>
+			<td class="active">{recentsearch.TIME}</td>
+		</tr>
+	<!-- BEGINELSE -->
+		<tr class="bg1">
+			<td colspan="2">{L_NO_RECENT_SEARCHES}</td>
+		</tr>
+	<!-- END recentsearch -->
+	</tbody>
+	</table>
+
+	</div>
+</div>
+<!-- ENDIF -->
+<!-- EVENT search_body_recent_search_after -->
+
+<!-- INCLUDE overall_footer.html -->

@@ -1,0 +1,26 @@
+
+	<li class="nav-item dropdown">
+		<a href="#" class="btn btn-secondary dropdown-toggle me-1" id="sort-options" title="{L_SORT_OPTIONS}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+			<i class="icon fa-sort-amount-asc fa-fw" aria-hidden="true"></i>
+		</a>
+		<ul class="dropdown-menu" aria-labelledby="sort-options">
+			<form class="dropdown-menu">
+				<fieldset class="display-options mx-3">
+					<!-- IF S_SORT_OPTIONS -->
+					<label>{L_SORT_BY}{L_COLON} <select name="sk" id="sk">{S_SORT_OPTIONS}</select></label>
+					<label>{L_SORT_DIRECTION}{L_COLON} <select name="sd" id="sd">{S_ORDER_SELECT}</select></label>
+					<hr class="dashed" />
+					<input type="submit" class="button2" name="sort" value="{L_SORT}" />
+					<!-- ELSE -->
+					<label>{L_DISPLAY}{L_COLON} {S_SELECT_SORT_DAYS}</label>
+					<!-- IF S_SELECT_SORT_KEY -->
+					<label>{L_SORT_BY}{L_COLON} {S_SELECT_SORT_KEY}</label>
+					<label>{L_SORT_DIRECTION}{L_COLON} {S_SELECT_SORT_DIR}</label>
+					<!-- ENDIF -->
+					<li><hr class="dropdown-divider"></li>
+					<input type="submit" class="btn btn-primary" name="sort" value="{L_GO}" />
+					<!-- ENDIF -->
+				</fieldset>
+			</form>
+		</ul>
+	</li>

@@ -1,0 +1,26 @@
+<!-- IF S_TYPE == 1 -->
+<div class="captcha-panel">
+	<div class="inner">
+
+	<h3 class="captcha-title">{L_CONFIRMATION}</h3>
+	<p>{L_CONFIRM_EXPLAIN}</p>
+
+	<fieldset class="fields2">
+<!-- ENDIF -->
+
+	<div class="mb-3 d-flex flex-column">
+		<label for="confirm_code" class="form-label mt-5">{L_CONFIRM_CODE}</label>
+		<div class="captcha captcha-image"><img src="{CONFIRM_IMAGE_LINK}" alt="{L_CONFIRM_CODE}"></div>
+		<div class="input-group my-3">
+			<input type="text" class="form-control" name="confirm_code" id="confirm_code" size="8" maxlength="8" tabindex="{$CAPTCHA_TAB_INDEX}" title="{L_CONFIRM_CODE}" aria-label="confirm_code" aria-describedby="confirmCodeExplain">
+			<!-- IF S_CONFIRM_REFRESH --><input type="submit" name="refresh_vc" id="refresh_vc" class="btn btn-outset rounded-end" value="{L_VC_REFRESH}" /><!-- ENDIF -->
+			<input type="hidden" name="confirm_id" id="confirm_id" value="{CONFIRM_ID}" />
+			<div id="confirmCodeExplain" class="form-text">{L_CONFIRM_CODE_EXPLAIN}</div>
+		</div>
+	</div>
+
+<!-- IF S_TYPE == 1 -->
+	</fieldset>
+	</div>
+</div>
+<!-- ENDIF -->
